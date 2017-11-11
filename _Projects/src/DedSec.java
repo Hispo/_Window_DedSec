@@ -9,9 +9,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.SwingConstants;
@@ -52,10 +55,18 @@ public class DedSec extends JFrame{
 		message.setHorizontalAlignment(SwingConstants.CENTER);
 		add(message);
 
-		// Cria e adiciona botıes		
+		// Cria e adiciona bot√µes		
 		buttons[0] = new JButton("#WTF");
 		buttons[1] = new JButton("YES");
 		buttons[2] = new JButton("NO");
+		
+		// Cria ButtonHandler para evento de bot√£o
+		ButtonHandler handler = new ButtonHandler();
+		ButtonHandler_1 handler1 = new ButtonHandler_1();
+		ButtonHandler_2 handler2 = new ButtonHandler_2();
+		buttons[0].addActionListener(handler);
+		buttons[1].addActionListener(handler1);
+		buttons[2].addActionListener(handler2);
 		
 		for(int count = 0; count < buttons.length; count++)
 			buttons[count].setBackground(Color.lightGray);
@@ -64,6 +75,27 @@ public class DedSec extends JFrame{
 		buttonJPanel.add(buttons[1]);
 		buttonJPanel.add(buttons[2]);
 		add(buttonJPanel, BorderLayout.SOUTH);
+	} // Fim do construtor
+	
+	private class ButtonHandler implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			JOptionPane.showMessageDialog(DedSec.this,String.format(
+					"Now I'm confuse!"));
+		}
+	}
+	
+	private class ButtonHandler_1 implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			JOptionPane.showMessageDialog(DedSec.this,String.format(
+					"Ok, you're sure!"));
+		}
+	}
+	
+	private class ButtonHandler_2 implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			JOptionPane.showMessageDialog(DedSec.this,String.format(
+					"I knew, you're not sure!"));
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -72,6 +104,6 @@ public class DedSec extends JFrame{
 		dedsec.setSize(350, 150);
 		dedsec.setVisible(true);
 		dedsec.setLocationRelativeTo(null); // CONFIGURA PARA APARECER NO CENTRO DA TELA
-		dedsec.setResizable(false); // TAMANHO DA TELA INALTER¡VEL
+		dedsec.setResizable(false); // TAMANHO DA TELA INALTER√ÅVEL
 	}
 }
